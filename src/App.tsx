@@ -1,36 +1,44 @@
 import { useState } from 'react'
-import UpdateElectron from '@/components/update'
-import logoVite from './assets/logo-vite.svg'
-import logoElectron from './assets/logo-electron.svg'
+import { useEffect } from 'react'
+import { IoAdd } from "react-icons/io5";
+
 import './App.css'
+import { getTodayQuote } from './externalApis/Api'
 
 function App() {
-  const [count, setCount] = useState(0)
-  return (
-    <div className='App'>
-      <div className='logo-box'>
-        <a href='https://github.com/electron-vite/electron-vite-react' target='_blank'>
-          <img src={logoVite} className='logo vite' alt='Electron + Vite logo' />
-          <img src={logoElectron} className='logo electron' alt='Electron + Vite logo' />
-        </a>
-      </div>
-      <h1>Electron + Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Electron + Vite logo to learn more
-      </p>
-      <div className='flex-center'>
-        Place static files into the<code>/public</code> folder <img style={{ width: '5em' }} src='./node.svg' alt='Node logo' />
-      </div>
+  const [TodaysQoute ,setTodaysqute] = useState("")
+  const fetchQutes = async ()=>{
+    const quote = await getTodayQuote();
+    setTodaysqute(quote)
+    
+    
+  }
+    
+  useEffect(()=>{
+    
+    fetchQutes()
 
-      <UpdateElectron />
+  },[])
+  
+
+  
+  
+  return (
+    <div className=' bg-black w-full h-full flex  flex-col'>
+      
+     
+      <h2 > Thought of day</h2>
+      <h3 className=' text-white  font-thin text-sm '>`{TodaysQoute}` </h3>
+      <h1 className=' text-white font-bold ' > To Do list</h1>
+      <div className='flex  justify-end  items-end'>
+      <button className="btn btn-active  w-28 justify-center ">Add Task <IoAdd className=' text-white ' /> </button>
+
+      </div>
+      
+      
+      
+
+      
     </div>
   )
 }
