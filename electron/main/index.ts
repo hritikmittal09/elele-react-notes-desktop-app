@@ -120,6 +120,13 @@ app.on('window-all-closed', () => {
   win = null
   if (process.platform !== 'darwin') app.quit()
 })
+app.on('before-quit', () => {
+  // Ensure all windows are properly closed before quitting
+  if (win) {
+    win.removeAllListeners('close'); // Prevent duplicate close events
+    win.close();
+  }
+});
 
 app.on('second-instance', () => {
   if (win) {
