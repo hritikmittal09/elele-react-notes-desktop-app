@@ -4,6 +4,7 @@ import { IoAdd } from "react-icons/io5";
 
 import './App.css'
 import { getTodayQuote } from './externalApis/Api'
+import AddToDo from './components/update/To-Do-List/AddToDo';
 
 function App() {
   const [TodaysQoute ,setTodaysqute] = useState("")
@@ -30,10 +31,8 @@ function App() {
       <h2 > Thought of day</h2>
       <h3 className=' text-white  font-thin text-sm '>`{TodaysQoute}` </h3>
       <h1 className=' text-white font-bold ' > To Do list</h1>
-      <div className='flex  justify-end  items-end'>
-      <button className="btn btn-active  w-28 justify-center ">Add Task <IoAdd className=' text-white ' /> </button>
-
-      </div>
+      <AddToDo/>
+     
       
       
       
