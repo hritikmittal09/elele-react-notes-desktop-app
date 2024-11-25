@@ -25,7 +25,7 @@ function App() {
   
   
   return (
-    <div className=' bg-black w-full h-full flex  flex-col'>
+    <div className='  w-full h-full flex  flex-col'>
       
      
       <h2 > Thought of day</h2>

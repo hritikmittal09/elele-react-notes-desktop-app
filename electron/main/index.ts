@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import os from 'node:os'
 import { update } from './update'
+import sqlite3 from 'sqlite3';
+
 
 
 const originalConsoleError = console.error;
@@ -54,14 +56,47 @@ if (!app.requestSingleInstanceLock()) {
 }
 
 let win: BrowserWindow | null = null
+const DB_PATH =   path.join(__dirname, '../../app_database.sqlite');
 const preload = path.join(__dirname, '../preload/index.mjs')
 const indexHtml = path.join(RENDERER_DIST, 'index.html')
+async function createDatabase() {
+  // Create or open the SQLite database
+  const db = new sqlite3.Database(DB_PATH, (err) => {
+    if (err) {
+      console.error('Error creating database:', err);
+    } else {
+      console.log('Database created or opened:', DB_PATH);
+    }
+  });
+
+  // Create a table if it doesn’t exist
+  db.run(
+    `CREATE TABLE IF NOT EXISTS tasks (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      completed INTEGER DEFAULT 0
+    )`,
+    (err) => {
+      if (err) {
+        console.error('Error creating table:', err);
+      } else {
+        console.log('Table "tasks" is ready.');
+      }
+    }
+  );
+
+  db.close();
+}
+
+
+
 
 async function createWindow() {
   win = new BrowserWindow({
     title: 'TO-DO-LIST',
-
-    width: 500,
+    //resizable : false,
+    darkTheme :true,
+    //width: 500,
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
     webPreferences: {
       webSecurity: false, 
@@ -81,7 +116,7 @@ async function createWindow() {
   if (VITE_DEV_SERVER_URL) { // #298
     win.loadURL(VITE_DEV_SERVER_URL)
     // Open devTool if the app is not packaged
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
   } else {
     win.loadFile(indexHtml)
   }
@@ -114,7 +149,10 @@ app.on('ready', () => {
   };
 });
 
-app.whenReady().then(createWindow)
+app.whenReady().then(async ()=>{
+  await createDatabase()
+  createWindow()
+})
 
 app.on('window-all-closed', () => {
   win = null
