@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import os from 'node:os'
 import { update } from './update'
-import sqlite3 from 'sqlite3';
+//import sqlite3 from 'sqlite3';
 
 
 
@@ -59,34 +59,7 @@ let win: BrowserWindow | null = null
 const DB_PATH =   path.join(__dirname, '../../app_database.sqlite');
 const preload = path.join(__dirname, '../preload/index.mjs')
 const indexHtml = path.join(RENDERER_DIST, 'index.html')
-async function createDatabase() {
-  // Create or open the SQLite database
-  const db = new sqlite3.Database(DB_PATH, (err) => {
-    if (err) {
-      console.error('Error creating database:', err);
-    } else {
-      console.log('Database created or opened:', DB_PATH);
-    }
-  });
 
-  // Create a table if it doesn’t exist
-  db.run(
-    `CREATE TABLE IF NOT EXISTS tasks (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title TEXT NOT NULL,
-      completed INTEGER DEFAULT 0
-    )`,
-    (err) => {
-      if (err) {
-        console.error('Error creating table:', err);
-      } else {
-        console.log('Table "tasks" is ready.');
-      }
-    }
-  );
-
-  db.close();
-}
 
 
 
@@ -150,7 +123,7 @@ app.on('ready', () => {
 });
 
 app.whenReady().then(async ()=>{
-  await createDatabase()
+// await createDatabase()
   createWindow()
 })
 
