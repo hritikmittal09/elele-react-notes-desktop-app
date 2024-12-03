@@ -18,3 +18,10 @@ export const getTodayQuote = async()=>{
 
     
 }
+ export function getTasks() {
+  // Get the tasks string from localStorage
+  const data = localStorage.getItem("tasks");
+
+  // Parse the data if it exists, otherwise return an empty array
+  return data ? JSON.parse(data) : [];
+}

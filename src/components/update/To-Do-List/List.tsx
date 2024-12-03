@@ -1,12 +1,20 @@
-import React from 'react'
+import React,{useCallback,useEffect,useState} from  'react'
 import ListItem from './ListItem'
+import { getTasks } from '@/externalApis/Api'
 
-function List() {
+function List (){
+  const [TaskList,setTasksList] = useState([])
+  useEffect(()=>{
+    setTasksList(getTasks())
+
+  },[])
   return (
     <div className='flex flex-col m-4'>
-        <ListItem id='1'TAskTitle='Drink Milk' TaskType='One time' />
-        <ListItem id='1'TAskTitle='Drink Milk' TaskType='One time' />
-        <ListItem id='1'TAskTitle='Drink Milk' TaskType='One time' />
+        {TaskList.map((task : any , i )=>{
+          return <ListItem id = {task.id} TAskTitle= {task.taskName } TaskType= {task.taskType} key={i}/>
+        })}
+        
+        
         
         
     </div>
