@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import List from './List'
 import { IoAdd } from 'react-icons/io5'
 
 const AddToDo:React.FC=()=> {
@@ -13,9 +14,31 @@ const AddToDo:React.FC=()=> {
   const handleChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTask(event.target.value); 
   };
+  function generateRandomId() {
+    return Math.random().toString(36).substr(2, 9); // Example: "83f9gq7c1"
+}
   const AddTask = ()=>{
-    console.log(addTaskInut);
-    console.log(selectedTask);
+   // console.log(addTaskInut);
+    //console.log(selectedTask);
+    let data: string = localStorage.getItem("tasks") || "[]";
+    let tasks = JSON.parse(data);
+
+    // Create a new task object
+    const newTask = {
+        id: generateRandomId(),
+        taskName: addTaskInut,
+        taskType: selectedTask,
+    };
+
+    // Append the new task to the list
+    tasks.push(newTask);
+
+    // Save the updated list back to localStorage
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    console.log(localStorage.getItem("tasks"));
+    
+
+    
     
     
   }
@@ -37,7 +60,11 @@ const AddToDo:React.FC=()=> {
         <option>Reminder </option>
       </select>
       </div>
-         
+        <div className=' m-3'>
+        <List  />
+
+        </div>
+        
 
         
         
