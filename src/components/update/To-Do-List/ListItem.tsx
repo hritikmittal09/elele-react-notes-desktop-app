@@ -1,28 +1,24 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { RiDeleteBin5Line } from "react-icons/ri";
 interface props {
   id : string,
   TAskTitle : string,
   TaskType : string
+  onDelete: (id: string) => void; 
 }
 
 
-function deleteTask(id : string) {
-  // Retrieve the current list of tasks from localStorage
-  let data = localStorage.getItem("tasks") || "[]";
-  let tasks = JSON.parse(data);
-
-  // Filter out the task with the matching id
-  const updatedTasks = tasks.filter((task : any)=> task.id !== id);
-
-  // Save the updated list back to localStorage
-  localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-
-  console.log(`Task with id ${id} has been deleted.`);
-}
 
 
-const ListItem :React.FC <props>= ({id,TAskTitle,TaskType})=> {
+
+const ListItem :React.FC <props>= ({id,TAskTitle,TaskType,onDelete})=> {
+  
+  
+  
+  
+  
+  
+  
   return (
     <div className=' flex bg-black  border-white justify-around p-3  rounded-md m-2' >
         <div>
@@ -31,7 +27,7 @@ const ListItem :React.FC <props>= ({id,TAskTitle,TaskType})=> {
         </div>
        
         <div>
-        <button className="btn btn-active  w-28  "> <RiDeleteBin5Line className=' text-white text-lg' /> </button>
+        <button onClick={()=>{onDelete(id)}} className="btn btn-active  w-28  "> <RiDeleteBin5Line className=' text-white text-lg' /> </button>
         </div>
 
     </div>
