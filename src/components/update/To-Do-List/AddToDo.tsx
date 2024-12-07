@@ -65,7 +65,7 @@ const AddToDo: React.FC = () => {
         </div>
         <div className="flex justify-start">
           <select
-            className="select select-bordered my-2 w-50 max-w-xs"
+            className="select select-bordered my-1 w-50 max-w-xs"
             value={selectedTask} // Bind the state to the select value
             onChange={handleSelectChange}
           >

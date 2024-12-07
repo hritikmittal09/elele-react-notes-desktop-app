@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow,screen, shell, ipcMain } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
@@ -65,11 +65,16 @@ const indexHtml = path.join(RENDERER_DIST, 'index.html')
 
 
 async function createWindow() {
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { width } = primaryDisplay.workAreaSize;
   win = new BrowserWindow({
     title: 'TO-DO-LIST',
-    //resizable : false,
+    resizable : false,
     darkTheme :true,
-    //width: 500,
+    width: 500,
+    height :600,
+    opacity: 1,
+    alwaysOnTop: true, 
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
     webPreferences: {
       webSecurity: false, 
@@ -85,14 +90,31 @@ async function createWindow() {
       // contextIsolation: false,
     },
   })
+  win.setBounds({
+    x: width - 500, // Adjust x based on window width
+    y: 0,
+    width: 500,
+    height: 500,
+  });
+  
+  
+  win.setMenuBarVisibility(false);
+  
 
   if (VITE_DEV_SERVER_URL) { // #298
     win.loadURL(VITE_DEV_SERVER_URL)
     // Open devTool if the app is not packaged
-    win.webContents.openDevTools()
+    //win.webContents.openDevTools()
   } else {
     win.loadFile(indexHtml)
   }
+  win.on('focus', () => {
+    if (win) win.setOpacity(1); // Ensure win exists
+  });
+
+  win.on('blur', () => {
+    if (win) win.setOpacity(0.1); // Ensure win exists
+  });
 
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
