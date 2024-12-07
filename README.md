@@ -3,6 +3,7 @@
 A simple experimental project to combine **React** and **Electron** into a desktop application. This app is styled using **Tailwind CSS** and **DaisyUI**, and it uses **localStorage** for saving tasks locally.
 
 ---
+![image](https://github.com/user-attachments/assets/3be6c60a-08d0-4d3c-995c-55d2f1175a44)
 
 ## Features
 
