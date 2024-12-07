@@ -26,11 +26,7 @@ A simple experimental project to combine **React** and **Electron** into a deskt
 ## 🛫 Quick Setup
 
 ```sh
-# clone the project
-git clone https://github.com/electron-vite/electron-vite-react.git
 
-# enter the project directory
-cd electron-vite-react
 
 # install dependency
 npm install
