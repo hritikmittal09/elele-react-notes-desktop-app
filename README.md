@@ -1,22 +1,27 @@
-# electron-vite-react
+# Electron React To-Do App
 
-[![awesome-vite](https://awesome.re/mentioned-badge.svg)](https://github.com/vitejs/awesome-vite)
-![GitHub stars](https://img.shields.io/github/stars/caoxiemeihao/vite-react-electron?color=fa6470)
-![GitHub issues](https://img.shields.io/github/issues/caoxiemeihao/vite-react-electron?color=d8b22d)
-![GitHub license](https://img.shields.io/github/license/caoxiemeihao/vite-react-electron)
-[![Required Node.JS >= 14.18.0 || >=16.0.0](https://img.shields.io/static/v1?label=node&message=14.18.0%20||%20%3E=16.0.0&logo=node.js&color=3f893e)](https://nodejs.org/about/releases)
+A simple experimental project to combine **React** and **Electron** into a desktop application. This app is styled using **Tailwind CSS** and **DaisyUI**, and it uses **localStorage** for saving tasks locally.
 
-English | [简体中文](README.zh-CN.md)
+---
 
-## 👀 Overview
+## Features
 
-📦 Ready out of the box  
-🎯 Based on the official [template-react-ts](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts), project structure will be familiar to you  
-🌱 Easily extendable and customizable  
-💪 Supports Node.js API in the renderer process  
-🔩 Supports C/C++ native addons  
-🐞 Debugger configuration included  
-🖥 Easy to implement multiple windows  
+- **Add Tasks**: Add new tasks with task types (e.g., One-time Task, Daily Task, Reminder).
+- **View Tasks**: Displays tasks in a clean and responsive UI.
+- **Task Management**: Allows categorization and management of tasks.
+- **Window Behavior**: 
+  - The app reduces opacity when out of focus and restores full opacity when in focus.
+  - Always opens in the top-right corner of the screen.
+- **Theming**: Styled using Tailwind CSS and DaisyUI.
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js installed
+- npm or yarn installed
+
 
 ## 🛫 Quick Setup
 
@@ -34,9 +39,7 @@ npm install
 npm run dev
 ```
 
-## 🐞 Debug
 
-![electron-vite-react-debug.gif](/electron-vite-react-debug.gif)
 
 ## 📂 Directory structure
 
@@ -80,12 +83,3 @@ export default {
 ```
 -->
 
-## 🔧 Additional features
-
-1. electron-updater 👉 [see docs](src/components/update/README.md)
-1. playwright
-
-## ❔ FAQ
-
-- [C/C++ addons, Node.js modules - Pre-Bundling](https://github.com/electron-vite/vite-plugin-electron-renderer#dependency-pre-bundling)
-- [dependencies vs devDependencies](https://github.com/electron-vite/vite-plugin-electron-renderer#dependencies-vs-devdependencies)
