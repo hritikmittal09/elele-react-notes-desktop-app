@@ -7,7 +7,7 @@ import { getTodayQuote } from './externalApis/Api'
 import AddToDo from './components/update/To-Do-List/AddToDo';
 
 function App() {
-  const [TodaysQoute ,setTodaysqute] = useState("")
+  const [TodaysQoute ,setTodaysqute] = useState(null)
   const fetchQutes = async ()=>{
     const quote = await getTodayQuote();
     setTodaysqute(quote)
