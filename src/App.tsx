@@ -26,10 +26,14 @@ function App() {
   
   return (
     <div className='  w-full h-full flex  flex-col'>
+      {TodaysQoute!= null && <div>
+        <h2 > Thought of day</h2>
+        <h3 className=' text-white  font-thin text-sm '>`{TodaysQoute}` </h3>
+
+      </div> }
       
      
-      <h2 > Thought of day</h2>
-      <h3 className=' text-white  font-thin text-sm '>`{TodaysQoute}` </h3>
+     
       <h1 className=' text-white font-bold ' > To Do list</h1>
       <AddToDo/>
      

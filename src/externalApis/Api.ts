@@ -11,7 +11,7 @@ export const getTodayQuote = async()=>{
       return data.data.content
     } catch (error) {
 
-        return "error"
+        return null
       console.error(error);
     }
  
