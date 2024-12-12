@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { IoAdd } from "react-icons/io5";
+import TitleBar from './components/update/To-Do-List/TitleBar';
 
 import './App.css'
 import { getTodayQuote } from './externalApis/Api'
@@ -25,6 +26,8 @@ function App() {
   
   
   return (
+    <>
+    <TitleBar/>
     <div className='  w-full h-full flex  flex-col'>
       {TodaysQoute!= null && <div>
         <h2 > Thought of day</h2>
@@ -43,6 +46,7 @@ function App() {
 
       
     </div>
+    </>
   )
 }
 

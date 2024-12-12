@@ -22,6 +22,11 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // You can expose other APTs you need here.
   // ...
 })
+contextBridge.exposeInMainWorld('electronAPI', {
+  minimizeWindow: () => ipcRenderer.send('window:minimize'),
+  toggleMaximizeRestore: () => ipcRenderer.send('window:toggle-maximize-restore'),
+  closeWindow: () => ipcRenderer.send('window:close'),
+});
 
 // --------- Preload scripts loading ---------
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {

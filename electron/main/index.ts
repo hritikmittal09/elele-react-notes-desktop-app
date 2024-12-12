@@ -71,11 +71,13 @@ async function createWindow() {
     title: 'TO-DO-LIST',
     resizable : false,
     darkTheme :true,
+    frame : false,
+    autoHideMenuBar : false,
     width: 500,
     height :600,
     opacity: 1,
     alwaysOnTop: true, 
-    icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
+    icon: path.join(process.env.VITE_PUBLIC || '', 'favicon.ico'),
     webPreferences: {
       webSecurity: false, 
       contextIsolation: true,
@@ -108,6 +110,16 @@ async function createWindow() {
   } else {
     win.loadFile(indexHtml)
   }
+  let mainWindow = win
+  ipcMain.on('window:minimize', () => mainWindow?.minimize());
+  ipcMain.on('window:toggle-maximize-restore', () => {
+    if (win?.isMaximized()) {
+      mainWindow.restore();
+    } else {
+      mainWindow?.maximize();
+    }
+  });
+  ipcMain.on('window:close', () => mainWindow?.close());
   win.on('focus', () => {
     if (win) win.setOpacity(1); // Ensure win exists
   });
