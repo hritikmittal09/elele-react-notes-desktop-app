@@ -76,7 +76,7 @@ async function createWindow() {
     width: 500,
     height :600,
     opacity: 1,
-    alwaysOnTop: true, 
+    //alwaysOnTop: true, 
     icon: path.join(process.env.VITE_PUBLIC || '', 'favicon.ico'),
     webPreferences: {
       webSecurity: false, 
