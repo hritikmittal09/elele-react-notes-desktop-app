@@ -22,7 +22,7 @@ const TitleBar: React.FC = () => {
 
   return (
     <div
-      className="w-full h-10 bg-gray-800 text-white flex items-center justify-between select-none"
+      className="w-full h-10  text-white flex items-center justify-between select-none bg-black"
       style={{ WebkitAppRegion: 'drag' }} // Enable dragging
     >
       {/* App Icon and Title */}
@@ -34,14 +34,14 @@ const TitleBar: React.FC = () => {
       {/* Window Controls */}
       <div className="flex items-center gap-2 pr-4" style={{ WebkitAppRegion: 'no-drag' }}>
         <button
-          className="w-8 h-8 flex items-center justify-center hover: bg-black rounded"
+          className="w-8 border-black h-8 flex items-center justify-center hover: bg-black rounded"
           onClick={handleMinimize}
         >
           <CiMinimize1 className=' text-white text-center  text-lg' />
         </button>
         
         <button
-          className="w-8 bg-black h-8 flex items-center justify-center hover:bg-red-600 rounded"
+          className="w-8 border-black bg-black h-8 flex items-center justify-center hover:bg-red-600 rounded"
           onClick={handleClose}
         >
           <IoIosClose className=' text-center text-white text-2xl'/>
