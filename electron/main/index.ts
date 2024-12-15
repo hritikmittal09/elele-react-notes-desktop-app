@@ -69,7 +69,7 @@ async function createWindow() {
   const { width } = primaryDisplay.workAreaSize;
   win = new BrowserWindow({
     title: 'TO-DO-LIST',
-    //resizable : false,
+    resizable : false,
     darkTheme :true,
     frame : false,
     autoHideMenuBar : false,
