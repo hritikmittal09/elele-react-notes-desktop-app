@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import List from './List';
+import { TfiNotepad } from "react-icons/tfi";
 import { IoAdd } from 'react-icons/io5';
+import Modal from '../Modal';
+import { useEffect } from 'react';
+import { fetchWikipediaSummary } from '@/externalApis/Api';
+//import { fetchWikiData } from '@/externalApis/Api';
 
 const AddToDo: React.FC = () => {
   const [SaveTask, saveTaskCompete] = useState<boolean>(false);
   const [addTaskInut, setAddTaskInput] = useState('');
   const [selectedTask, setSelectedTask] = useState('Daily Task');
+  const [openNotePad , setOpenNotePad] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddTaskInput(e.target.value);
@@ -18,6 +24,9 @@ const AddToDo: React.FC = () => {
   function generateRandomId() {
     return Math.random().toString(36).substr(2, 9); // Example: "83f9gq7c1"
   }
+  useEffect(()=>{
+    fetchWikipediaSummary("iron man")
+  },[])
 
   const AddTask = () => {
     // Retrieve tasks from localStorage
@@ -47,6 +56,18 @@ const AddToDo: React.FC = () => {
       alert('Task name cannot be empty!');
     }
   };
+  const openNodePad =()=>{
+    setOpenNotePad(true)
+
+  }
+  const openNodePadfun =()=>{
+    setOpenNotePad(true)
+
+  }
+  const cloeNodePadfun =()=>{
+    setOpenNotePad(false)
+
+  }
 
   return (
     <div>
@@ -73,11 +94,17 @@ const AddToDo: React.FC = () => {
             <option>Daily Task</option>
             <option>Reminder</option>
           </select>
+          <button className="btn btn-active w-28" onClick={openNodePad}>
+            Ask Me  <TfiNotepad className="text-white" />
+          </button>
         </div>
+
         <div className="m-3">
           <List saveNewTask={SaveTask} />
         </div>
       </div>
+      
+      {openNotePad== true && <Modal open = {openNotePad} onCancel={()=>setOpenNotePad(false)} title = {"Ask Me Anything.. "}/>}
     </div>
   );
 };

@@ -69,7 +69,7 @@ async function createWindow() {
   const { width } = primaryDisplay.workAreaSize;
   win = new BrowserWindow({
     title: 'TO-DO-LIST',
-    resizable : false,
+    //resizable : false,
     darkTheme :true,
     frame : false,
     autoHideMenuBar : false,
@@ -106,7 +106,7 @@ async function createWindow() {
   if (VITE_DEV_SERVER_URL) { // #298
     win.loadURL(VITE_DEV_SERVER_URL)
     // Open devTool if the app is not packaged
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
   } else {
     win.loadFile(indexHtml)
   }

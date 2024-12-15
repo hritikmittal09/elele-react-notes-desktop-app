@@ -25,3 +25,17 @@ export const getTodayQuote = async()=>{
   // Parse the data if it exists, otherwise return an empty array
   return data ? JSON.parse(data) : [];
 }
+export const fetchWikipediaSummary = async (pageTitle: string) => {
+  const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(pageTitle)}`;
+
+  try {
+    const response = await axios.get(apiUrl);
+    const data = response.data;
+    //console.log('Title:', data.title);
+    console.log('Summary:', data.extract);
+    return data.extract
+  } catch (error: any) {
+    return "sorry cant search this try shimming else ... "
+    console.error('Error fetching Wikipedia data:', error.message);
+  }
+};
